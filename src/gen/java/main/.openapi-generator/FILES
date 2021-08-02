@@ -1,0 +1,7 @@
+README.md
+pom.xml
+src/main/java/com/than/fdasearch/api/ApiUtil.java
+src/main/java/com/than/fdasearch/api/ApplicationsApi.java
+src/main/java/com/than/fdasearch/api/SearchApi.java
+src/main/java/com/than/fdasearch/api/model/ApplicationEntry.java
+src/main/java/com/than/fdasearch/api/model/ApplicationSearchResult.java

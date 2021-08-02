@@ -1,0 +1,111 @@
+openapi: 3.0.1
+info:
+  title: Drug record applications
+  description: 'This is a dummy application to access FDA API and store related info'
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/
+paths:
+  /search:
+    get:
+      summary: Search for applications
+      operationId: searchApplications
+      parameters:
+        - name: manufacturer
+          in: query
+          description: Manufacturer name
+          required: true
+          schema:
+            type: string
+        - name: substance
+          in: query
+          description: Substance name
+          required: false
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: Page
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+        - name: limit
+          in: query
+          description: Results limit
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationSearchResult'
+        500:
+          description: Server error
+          content: {}
+  /applications:
+    get:
+      summary: View all locally saved applications
+      operationId: viewSavedApplications
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApplicationEntry'
+        500:
+          description: Server error
+          content: {}
+    post:
+      summary: Create a local entry for an application
+      operationId: saveApplication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationEntry'
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            {}
+        500:
+          description: Server error
+          content: {}
+components:
+  schemas:
+    ApplicationSearchResult:
+      type: object
+      properties:
+        page:
+          type: integer
+        totalPages:
+          type: integer
+        pageElements:
+          type: integer
+        totalElements:
+          type: integer
+        payload:
+          type: object
+
+    ApplicationEntry:
+      type: object
+      properties:
+        id:
+          type: string
+        manufacturerName:
+          type: string
+        substanceName:
+          type: string
+        productNumbers:
+          type: array
+          items:
+            type: integer
