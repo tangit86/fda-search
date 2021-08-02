@@ -19,3 +19,6 @@ The above command sets the active profile to `production` and also provides the 
 ## Documentation
 
 Navigate to `http://localhost:8080/swagger-ui/` for a Swagger view of the exposed endpoints.
+An OpenAPI 3.0 yaml is also found under `resources/mainapp.yml` and is also used to generate the exposed interfaces.
+
+* NOTE: The Swagger view is not fully representing the API description that is found in the yaml file
